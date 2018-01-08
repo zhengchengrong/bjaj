@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">北京安监</string>
+    <string name="toast_network_error">网络连接错误</string>
+    <string name="user_name">用户名</string>
+    <string name="passwords">密码</string>
+    <string name="btn_pic_upload_text">上传图片</string>
+    <string name="change_address">修改地址</string>
+    <string name="change_address_ok">确定</string>
+</resources>

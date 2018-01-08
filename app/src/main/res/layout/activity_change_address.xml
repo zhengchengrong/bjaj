@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+    <include layout="@layout/layout_top_white"/>
+
+    <com.threehmis.bjaj.utils.EmojiEditText
+        android:id="@+id/write"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:background="@color/white"
+        android:hint="省市区/监督站名称"
+        android:maxEms="20"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:textColor="#999999"
+        android:textColorHint="#c9c9c9"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/map_green"
+        android:text="请选择"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:padding="5dp"
+        android:singleLine="true"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_view"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:divider="@color/garybg"
+        android:dividerHeight="1dp"
+        android:background="#FFFFFF" />
+
+</LinearLayout>

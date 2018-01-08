@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list  xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 背景图，不可加clip结点，否则无显示效果 -->
+    <item android:id="@android:id/background">
+        <inset
+            android:insetBottom="5.0dip"
+            android:insetTop="5.0dip" >
+            <shape android:shape="rectangle">
+                <solid android:color="#3AFFFFFF" />
+                <corners android:radius="90dp" />
+                <!-- padding：边界的间隔–> -->
+
+            </shape>
+        </inset>
+    </item>
+
+    <!-- 第二进度条，增加inset属性可以避免thumb上下被挤压 -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <inset
+                android:insetBottom="5.0dip"
+                android:insetTop="5.0dip" >
+                <shape android:shape="rectangle">
+                    <solid android:color="#66FFFFFF" />
+                    <corners android:radius="90dp" />
+                    <!-- padding：边界的间隔–> -->
+
+                </shape>
+            </inset>
+        </clip>
+    </item>
+
+    <!-- 第一进度条，必须放在第二进度条的下面，否则会被第二进度条覆盖而无效果 -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <inset
+                android:insetBottom="5.0dip"
+                android:insetTop="5.0dip" >
+                <shape android:shape="rectangle">
+                    
+                    <solid android:color="#FFFFFFFF" />
+                    <corners android:radius="90dp" />
+                    <!-- padding：边界的间隔–> -->
+ 
+                </shape>
+            </inset>
+        </clip>
+    </item>
+
+</layer-list>
