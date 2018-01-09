@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/garybg"
+     >
+
+    <TextView
+        android:id="@+id/test_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/box_item_selector"
+        android:gravity="center"
+        android:text="报告查验"
+        android:textColor="@color/gary"
+        android:textSize="18dp" />
+    <include
+        layout="@layout/layout_menu_line"/>
+    <TextView
+        android:id="@+id/scene_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/box_item_selector"
+        android:gravity="center"
+        android:text="见证查询"
+        android:textColor="@color/gary"
+        android:textSize="18dp" />
+    <include
+        layout="@layout/layout_menu_line"/>
+    <TextView
+        android:id="@+id/chip_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/box_item_selector"
+        android:gravity="center"
+        android:text="芯片查询"
+        android:textColor="@color/gary"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/cancer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/box_item_selector"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/gary"
+        android:textSize="18dp" />
+
+</LinearLayout>

@@ -2,10 +2,15 @@ package com.threehmis.bjaj.module.logins;
 
 import com.google.gson.Gson;
 import com.threehmis.bjaj.api.BaseObserver;
+import com.threehmis.bjaj.api.BjajService;
+import com.threehmis.bjaj.api.Const;
 import com.threehmis.bjaj.api.RetrofitFactory;
 import com.threehmis.bjaj.api.RxSchedulers;
+import com.threehmis.bjaj.api.bean.BaseBeanRsp;
 import com.threehmis.bjaj.api.bean.BaseEntity;
 import com.threehmis.bjaj.api.bean.LoginInfoBean;
+import com.threehmis.bjaj.api.bean.request.GetLoginListReq;
+import com.threehmis.bjaj.api.bean.respon.GetLoginListRsp;
 import com.threehmis.bjaj.module.base.IBasePresenter;
 
 import javax.inject.Inject;
@@ -28,28 +33,30 @@ public class LoginPresenter implements IBasePresenter{
 
 
     // 登录操作
-    // mLoginView.<BaseEntity<UserEntity>>bindToLife()
+    // mLoginView.<BaseEntity<UserEntity>>bindToLife()00
     // 回调了BaseActivity中的bindToLife 返回了LifecycleTransformer对象，将生命周期和LoginAcitivity捆绑防止内存泄漏
 
-    public void login(String username,String password){
-/*        mLoginView.showLoading();
-        Observable<BaseEntity<LoginInfoBean>> observable = RetrofitFactory.getInstance().login(username, password);
-        observable.compose(RxSchedulers.<BaseEntity<LoginInfoBean>>compose(mLoginView.<BaseEntity<LoginInfoBean>>bindToLife()
-        )).subscribe(new BaseObserver<LoginInfoBean>(mLoginView) {
-            @Override
-            protected void onHandleSuccess(BaseEntity<LoginInfoBean> userEntity) {
-                // 保存用户信息等操作
-                mLoginView.hideLoading();
-                mLoginView.saveLoginInfo(userEntity);
-                mLoginView.toActivity(new Gson().toJson(userEntity));
-            }
+    public void login(String phoneNum,String password){
+        mLoginView.showLoading();
+        GetLoginListReq req = new GetLoginListReq();
+        req.setPhone(phoneNum);
+        req.setPassword(password);
+        String str = new Gson().toJson(req);
 
+        Observable<BaseBeanRsp<GetLoginListRsp>> observable = RetrofitFactory.getInstance().toLogin(str);
+        observable.compose(RxSchedulers.<BaseBeanRsp<GetLoginListRsp>>compose(mLoginView.<BaseBeanRsp<GetLoginListRsp>>bindToLife()
+        )).subscribe(new BaseObserver<GetLoginListRsp>(mLoginView) {
             @Override
-            protected void onHandleError(BaseEntity<LoginInfoBean> userEntity) {
-                mLoginView.hideLoading();
-                mLoginView.showNetError();
+            protected void onHandleSuccess(BaseBeanRsp<GetLoginListRsp> userEntity) {
+                // 登陆成功 保存用户信息等操作
+                mLoginView.successLogin(userEntity);
             }
-        });*/
+            @Override
+            protected void onHandleEmpty(BaseBeanRsp<GetLoginListRsp> t) {
+            // 登陆失败
+                mLoginView.errorLogin();
+            }
+        });
     }
 
     @Override

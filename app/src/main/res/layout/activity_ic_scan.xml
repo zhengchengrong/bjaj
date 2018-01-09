@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_top_white" />
+
+    <include layout="@layout/layout_menu_line" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/base"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:background="@color/garybg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/click_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:drawableBottom="@drawable/scan"
+                android:gravity="center"
+                android:text="点击扫描二维码"
+                android:textColor="#006F64"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="芯片外码"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+
+                <com.ydzf.hhh.hhh_ydzf.tool.EmojiEditText
+                    android:id="@+id/write"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="2"
+                    android:background="@null"
+                    android:hint="请输入见证组号或二维码编号"
+                    android:maxEms="20"
+                    android:maxLines="1"
+                    android:textColor="#999999"
+                    android:textColorHint="#c9c9c9"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_select_green"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="手动查询"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/btn1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/btn_select_green"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="植入照片"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/btn2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_green"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="8dp"
+                    android:text="植入位置"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/btn3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_green"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="见证照片"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/btn4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_green"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="见证位置"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/book01"
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:text="见证信息"
+                android:textColor="@color/green"
+                android:textSize="15dp" />
+
+            <include layout="@layout/layout_menu_linegreen" />
+
+            <ListView
+                android:id="@+id/infolist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/garybg"
+                android:dividerHeight="1dp"
+                android:padding="2dp"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

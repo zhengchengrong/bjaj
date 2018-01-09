@@ -7,12 +7,15 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
 import com.threehmis.bjaj.api.bean.BaseBeanRsp;
 import com.threehmis.bjaj.api.bean.BaseEntity;
 import com.threehmis.bjaj.api.bean.ItemResult;
 import com.threehmis.bjaj.api.bean.request.ChangeAddressRequestBean;
 import com.threehmis.bjaj.api.bean.respon.ChangeAddressResponBean;
+import com.threehmis.bjaj.api.bean.respon.GetExamReportRsp;
+import com.threehmis.bjaj.api.bean.respon.GetLoginListRsp;
 import com.threehmis.bjaj.api.bean.respon.GetMainAddressRsp;
 
 /**
@@ -27,13 +30,18 @@ public interface BjajService {
 
     // 获取附近工地列表
     @FormUrlEncoded
-    @POST("monitorunit/getMonitorunit")
-    Observable<BaseBeanRsp<ChangeAddressResponBean>> getMonitorunitStr(@Field("params") String  str);
+    @POST
+    Observable<BaseBeanRsp<ChangeAddressResponBean>> getMonitorunitStr(@Url String url, @Field("params") String  str);
 
     //根据关键字搜索工地
     @FormUrlEncoded
-    @POST("monitorunit/findByUnitName")
-    Observable<BaseBeanRsp<ChangeAddressResponBean>> byKeyForMonitorunit(@Field("params") String  str);
+    @POST
+    Observable<BaseBeanRsp<ChangeAddressResponBean>> byKeyForMonitorunit(@Url String url, @Field("params") String  str);
+
+    //登陆
+    @FormUrlEncoded
+    @POST("login")
+    Observable<BaseBeanRsp<GetLoginListRsp>> toLogin(@Field("params") String  str);
 
 
 /*    @POST("monitorunit/getMonitorunit")

@@ -1,5 +1,6 @@
 package com.threehmis.bjaj.module.base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -122,14 +123,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
     }
 
 
-    // 跳转到登录页面
-    @Override
-    public void toLoginActivity(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 
     /**
      * 初始化 Toolbar
@@ -147,6 +140,29 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
     protected void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, int resTitle) {
         initToolBar(toolbar, homeAsUpEnabled, getString(resTitle));
     }
+
+    /**
+     * 跳转页面,无extra简易型
+     *
+     * @param tarActivity 目标页面
+     */
+    public void startActivity(Class<? extends Activity> tarActivity, Bundle options) {
+        Intent intent = new Intent(this, tarActivity);
+        intent.putExtras(options);
+        startActivity(intent);
+    }
+
+    public void startActivityForResult(Class<? extends Activity> tarActivity, Bundle options, int requestCode) {
+        Intent intent = new Intent(this, tarActivity);
+        intent.putExtras(options);
+        startActivityForResult(intent, requestCode);
+    }
+
+    public void startActivity(Class<? extends Activity> tarActivity) {
+        Intent intent = new Intent(this, tarActivity);
+        startActivity(intent);
+    }
+
 
     /**
      * 添加 Fragment
@@ -188,18 +204,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
         fragmentTransaction.commit();
     }
 
-    public void showToast(String msg) {
-        RxLogUtils.d("showToast  " + msg);
-        if (!TextUtils.isEmpty(msg)) {
-            if (msg.equals("invalid token")) { // 处理token过期
-                RxToast.showToast(this, "检测到您的登录已过期，请重新登录", Toast.LENGTH_SHORT);
-                sendBroadcast(new Intent("RELOAD_LOGIN")); //发送广播，跳转到登录页面。
-            } else
-                RxToast.showToast(this, msg, Toast.LENGTH_SHORT);
-        } else {
 
-        }
-    }
     /**
      * 替换 Fragment
      *

@@ -9,14 +9,28 @@ package com.threehmis.bjaj.api;
  * 新闻常量
  */
 public class Const {
-    // 头条
-    public static final String NEWS_HEAD_LINE = "T1348647909107";
-    // 精选
-    public static final String NEWS_BEST = "T1467284926140";
-    // 娱乐
-    public static final String NEWS_ENTERTAINMENT = "T1348648517839";
-    // 体育
-    public static final String NEWS_SPORT = "T1348649079062";
+    // 北京安监 SP 缓存
+    public static final String SP_BJAJ = "SP_BJAJ";
+
+    // 通用
+    public static final String NET_ERROR = "网络错误!";
+
+
+
+    // 修改地址页面 ChangeAddressActivity.java
+    public static final String ADDRESS = "ADDRESS";
+    public static final String CHOSE_ME = "请选择";
+    public static final String CHOSE_ME_SHOW = "请选择监督站！";
+
+    // 登陆页面 LoginActivity.java
+    public static final String INPUT_ACCOUNT = "请输入账号";
+    public static final String INPUT_PASSWORD = "请输入密码";
+    public static final String PHONENUM = "phoneNum";
+    public static final String PASSWORD = "password";
+    public static final String ISCHECKED = "isChecked";
+    public static final String LOGINDATE = "LoginDate";
+    public static final String REEORLOGIN = "登陆失败";
+    public static final String PERMISSIONSUCCESS = "授权成功";
 
 
     private Const() {

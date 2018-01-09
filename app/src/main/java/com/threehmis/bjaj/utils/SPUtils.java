@@ -3,6 +3,8 @@ package com.threehmis.bjaj.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.threehmis.bjaj.api.Const;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -16,7 +18,7 @@ public class SPUtils
     /**
      * 保存在手机里面的文件名
      */
-    public static final String FILE_NAME = "share_data";
+    public static final String FILE_NAME = Const.SP_BJAJ;
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法

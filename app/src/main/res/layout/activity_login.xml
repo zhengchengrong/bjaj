@@ -101,6 +101,7 @@
                 android:paddingLeft="15dp"
                 android:singleLine="true"
                 android:textColor="#999999"
+                android:text="18999904452"
                 android:textColorHint="@color/line"
                 android:textSize="15dp" />
         </LinearLayout>
@@ -137,6 +138,7 @@
                 android:maxEms="20"
                 android:maxLines="1"
                 android:paddingLeft="15dp"
+                android:text="123"
                 android:singleLine="true"
                 android:textColor="#999999"
                 android:textColorHint="@color/line"

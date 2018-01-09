@@ -47,7 +47,7 @@ public abstract class BaseObserver<T> implements Observer<BaseBeanRsp<T>>{
 
     @Override
     public void onError(Throwable e) {
-        RxToast.error("网络错误!");
+        RxLogUtils.e(e.getStackTrace()+":"+e.getMessage());
     }
 
     @Override
@@ -55,16 +55,8 @@ public abstract class BaseObserver<T> implements Observer<BaseBeanRsp<T>>{
         RxLogUtils.d(TAG, "onComplete");
     }
 
-    protected  void onHandleTokenError(){
-        // token 失效 跳转到登录页面
-        if(mBaseView!=null) {
-            mBaseView.toLoginActivity();
-        }
-    }
     protected abstract void onHandleSuccess(BaseBeanRsp<T> t);
 
-    protected  void onHandleEmpty(BaseBeanRsp<T> t){
-        mBaseView.showEmpty();
-    }
+    protected abstract void onHandleEmpty(BaseBeanRsp<T> t);
 
 }

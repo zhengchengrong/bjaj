@@ -29,6 +29,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.gson.Gson;
 import com.threehmis.bjaj.adapter.ChangeAddressAapter;
 import com.threehmis.bjaj.api.BaseObserver;
+import com.threehmis.bjaj.api.Const;
 import com.threehmis.bjaj.api.RetrofitFactory;
 import com.threehmis.bjaj.api.RxSchedulers;
 import com.threehmis.bjaj.api.bean.BaseBeanRsp;
@@ -44,6 +45,8 @@ import com.threehmis.bjaj.module.logins.LoginActivity;
 import com.threehmis.bjaj.utils.EmojiEditText;
 import com.threehmis.bjaj.utils.KeyBoardUtils;
 import com.threehmis.bjaj.utils.RegexUtil;
+import com.threehmis.bjaj.utils.SPUtils;
+import com.vondear.rxtools.view.RxToast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,7 +101,17 @@ public class ChangeAddressActivity extends BaseActivity {
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
         data = new ArrayList<ChangeAddressResponBean>();
         mAdapter = new ChangeAddressAapter(R.layout.layout_address_list_item,data);
+
         recycler_view.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                String unitName = data.get(i).getUnitName();
+                if(!TextUtils.isEmpty(unitName)){
+                    mAddress.setText(unitName);
+                }
+            }
+        });
 
         // 通过定位获取工地列表
         mLocationClient = new LocationClient(getApplicationContext());
@@ -186,12 +199,19 @@ public class ChangeAddressActivity extends BaseActivity {
         changeAddressRequestBean.setProvince(province);
         changeAddressRequestBean.setCity(city);
         String str = new Gson().toJson(changeAddressRequestBean);
-        Observable<BaseBeanRsp<ChangeAddressResponBean>> observable = RetrofitFactory.getInstance().getMonitorunitStr(str);
+        Observable<BaseBeanRsp<ChangeAddressResponBean>> observable = RetrofitFactory.getInstance().getMonitorunitStr(RetrofitFactory.BASE_URL_BEIFEN+"monitorunit/getMonitorunit",str);
         observable.compose(RxSchedulers.<BaseBeanRsp<ChangeAddressResponBean>>compose(this.<BaseBeanRsp<ChangeAddressResponBean>>bindToLifecycle()
         )).subscribe(new BaseObserver<ChangeAddressResponBean>(this) {
             @Override
             protected void onHandleSuccess(BaseBeanRsp<ChangeAddressResponBean> t) {
-                mAdapter.addData(t.getProjectList());
+                data.clear();
+                data.addAll(t.getProjectList());
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            protected void onHandleEmpty(BaseBeanRsp<ChangeAddressResponBean> t) {
+                showEmpty();
             }
         });
     }
@@ -200,22 +220,14 @@ public class ChangeAddressActivity extends BaseActivity {
 
     @OnClick(R.id.other)
     void other(){
-        if (!mAddress.getText().toString().endsWith("请选择")) {
-            finish();
-            SharedPreferences.Editor editor = getSharedPreferences("hhhlogin",
-                    Activity.MODE_PRIVATE).edit();
-            editor.putString("address", mAddress.getText().toString());
-            editor.commit();
-
+        if (!mAddress.getText().toString().endsWith(Const.CHOSE_ME)) {
+            SPUtils.put(this,Const.ADDRESS,mAddress.getText().toString());
             startActivity(new Intent(this, LoginActivity.class));
-        }else
-            Toast.makeText(getApplicationContext(), "请选择监督站！", Toast.LENGTH_SHORT).show();
-
-    }
-
-
-
-
+            finish();
+        }else {
+            Toast.makeText(getApplicationContext(), Const.CHOSE_ME_SHOW, Toast.LENGTH_SHORT).show();
+        }
+}
     //搜索
     void getSearch(){
         GetMainAddressRsp getMainAddressRsp = new GetMainAddressRsp();
@@ -223,12 +235,19 @@ public class ChangeAddressActivity extends BaseActivity {
         if(!TextUtils.isEmpty(unitName)){
             getMainAddressRsp.setUnitName(unitName);
             String str = new Gson().toJson(getMainAddressRsp);
-            Observable<BaseBeanRsp<ChangeAddressResponBean>> observable = RetrofitFactory.getInstance().byKeyForMonitorunit(str);
+            Observable<BaseBeanRsp<ChangeAddressResponBean>> observable = RetrofitFactory.getInstance().byKeyForMonitorunit(RetrofitFactory.BASE_URL_BEIFEN+"monitorunit/findByUnitName",str);
             observable.compose(RxSchedulers.<BaseBeanRsp<ChangeAddressResponBean>>compose(this.<BaseBeanRsp<ChangeAddressResponBean>>bindToLifecycle()
             )).subscribe(new BaseObserver<ChangeAddressResponBean>(this) {
                 @Override
                 protected void onHandleSuccess(BaseBeanRsp<ChangeAddressResponBean> t) {
-                    mAdapter.addData(t.getProjectList());
+                    data.clear();
+                    data.addAll(t.getProjectList());
+                    mAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                protected void onHandleEmpty(BaseBeanRsp<ChangeAddressResponBean> t) {
+                    showEmpty();
                 }
             });
         }
