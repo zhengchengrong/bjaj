@@ -38,7 +38,7 @@ public class HomeActivity extends RxAppCompatActivity {
         ButterKnife.bind(this);
         String str = getIntent().getStringExtra(GlobalConstant.LOGININFO);
         tvHomeSuccess.setText(str);
-
+/*
         Observable<BaseEntity<ItemResult>> observable =  RetrofitFactory.getInstance().getItemObser(536563);
         observable.compose(RxSchedulers.<BaseEntity<ItemResult>>compose(this.<BaseEntity<ItemResult>>bindToLifecycle()
         )).subscribe(new BaseObserver<ItemResult>() {
@@ -55,6 +55,6 @@ public class HomeActivity extends RxAppCompatActivity {
                     startActivity(intent);
                 }
             }
-        });
+        });*/
     }
 }

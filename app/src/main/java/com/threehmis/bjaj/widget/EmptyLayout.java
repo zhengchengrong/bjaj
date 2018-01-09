@@ -35,7 +35,11 @@ public class EmptyLayout extends FrameLayout {
     private int mBgColor;
 
     @BindView(R.id.tv_net_error)
+    TextView mTvErrorMessage;
+    
+    @BindView(R.id.tv_net_empty)
     TextView mTvEmptyMessage;
+    
     @BindView(R.id.rl_empty_container)
     View mRlEmptyContainer;
     @BindView(R.id.empty_loading)
@@ -101,11 +105,11 @@ public class EmptyLayout extends FrameLayout {
      * @param msg 显示消息
      */
     public void setEmptyMessage(String msg) {
-        mTvEmptyMessage.setText(msg);
+        mTvErrorMessage.setText(msg);
     }
 
     public void hideErrorIcon() {
-        mTvEmptyMessage.setCompoundDrawables(null, null, null, null);
+        mTvErrorMessage.setCompoundDrawables(null, null, null, null);
     }
 
 //    /**
@@ -139,9 +143,18 @@ public class EmptyLayout extends FrameLayout {
                 mEmptyLoading.setVisibility(VISIBLE);
                 break;
             case STATUS_NO_DATA:
+                setVisibility(VISIBLE);
+                mEmptyLoading.setVisibility(GONE);
+                mTvEmptyMessage.setVisibility(VISIBLE);
+                mTvErrorMessage.setVisibility(GONE);
+                mRlEmptyContainer.setVisibility(VISIBLE);
+                break;
             case STATUS_NO_NET:
                 setVisibility(VISIBLE);
                 mEmptyLoading.setVisibility(GONE);
+                mTvErrorMessage.setVisibility(VISIBLE);
+                mTvEmptyMessage.setVisibility(GONE
+                );
                 mRlEmptyContainer.setVisibility(VISIBLE);
                 break;
             case STATUS_HIDE:

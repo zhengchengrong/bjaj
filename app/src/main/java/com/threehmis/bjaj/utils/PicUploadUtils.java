@@ -51,7 +51,7 @@ public class PicUploadUtils {
                 RequestBody.create(
                         MediaType.parse("multipart/form-data"), descriptionString);
 // 执行请求
-        Call<PictureResult>  call =  RetrofitFactory.getInstance().uploadMemberIcon(body);
+/*        Call<PictureResult>  call =  RetrofitFactory.getInstance().uploadMemberIcon(body);
         call.enqueue(new Callback<PictureResult>() {
             @Override
             public void onResponse(Call<PictureResult> call, Response<PictureResult> response) {
@@ -62,7 +62,7 @@ public class PicUploadUtils {
             public void onFailure(Call<PictureResult> call, Throwable t) {
 
             }
-        });
+        });*/
 
     }
 

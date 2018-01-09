@@ -26,9 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
         textbottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 boolean isFirst = sharedPreferences.getBoolean("isFirst", true);
-
                 if (isFirst) {
                     startActivity(new Intent(WelcomeActivity.this, ChangeAddressActivity.class));
                 } else {

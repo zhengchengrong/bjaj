@@ -32,15 +32,22 @@
         android:padding="5dp"
         android:singleLine="true"
         />
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_view"
+        android:id="@+id/recycler_view"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="none"
         android:divider="@color/garybg"
         android:dividerHeight="1dp"
-        android:background="#FFFFFF" />
-
+       />
+    <com.threehmis.bjaj.widget.EmptyLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.threehmis.bjaj.widget.EmptyLayout>
+</RelativeLayout>
 </LinearLayout>

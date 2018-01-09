@@ -103,6 +103,13 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
         }
     }
 
+    @Override
+    public void showEmpty() {
+        if (mEmptyLayout != null) {
+            mEmptyLayout.setEmptyStatus(EmptyLayout.STATUS_NO_DATA);
+        }
+    }
+
     // 如果网络连接错误，点击后重新向后台申请数据
     @Override
     public void onRetry() {

@@ -13,4 +13,11 @@ public class GetMainAddressRsp {
 	public String unitName;
 	public String interfaceUrl;
 
+	public String getUnitName() {
+		return unitName;
+	}
+
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
 }

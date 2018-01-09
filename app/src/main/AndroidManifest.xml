@@ -38,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.threehmis.bjaj.module.home.HomeActivity"></activity>
+        <activity android:name=".ChangeAddressActivity"/>
 
         <!-- 百度定位配置 -->
         <meta-data

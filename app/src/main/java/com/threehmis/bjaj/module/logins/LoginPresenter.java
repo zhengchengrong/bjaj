@@ -32,7 +32,7 @@ public class LoginPresenter implements IBasePresenter{
     // 回调了BaseActivity中的bindToLife 返回了LifecycleTransformer对象，将生命周期和LoginAcitivity捆绑防止内存泄漏
 
     public void login(String username,String password){
-        mLoginView.showLoading();
+/*        mLoginView.showLoading();
         Observable<BaseEntity<LoginInfoBean>> observable = RetrofitFactory.getInstance().login(username, password);
         observable.compose(RxSchedulers.<BaseEntity<LoginInfoBean>>compose(mLoginView.<BaseEntity<LoginInfoBean>>bindToLife()
         )).subscribe(new BaseObserver<LoginInfoBean>(mLoginView) {
@@ -49,7 +49,7 @@ public class LoginPresenter implements IBasePresenter{
                 mLoginView.hideLoading();
                 mLoginView.showNetError();
             }
-        });
+        });*/
     }
 
     @Override

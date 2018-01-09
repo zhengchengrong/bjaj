@@ -69,7 +69,7 @@ public class RetrofitFactory {
                 public void log(String message) {
                     RxLogUtils.d(message);
                 }
-            }).setLevel(HttpLoggingInterceptor.Level.BASIC))
+            }).setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .build();
